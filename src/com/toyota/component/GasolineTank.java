@@ -4,8 +4,8 @@ public class GasolineTank {
     private int quantity;
     private final int capacity;
 
-    public GasolineTank(int capacity) {
-        this.quantity = 0;
+    public GasolineTank(int quantity, int capacity) {
+        this.quantity = quantity;
         this.capacity = capacity;
     }
 
