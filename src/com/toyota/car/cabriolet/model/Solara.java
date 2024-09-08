@@ -6,27 +6,22 @@ import com.toyota.component.Electrics;
 import com.toyota.component.Engine;
 import com.toyota.component.GasolineTank;
 import com.toyota.component.Headlights;
-import com.toyota.component.Wheel;
-import com.toyota.component.WheelsRadiusType;
 import com.toyota.component.MiniFridge;
+import com.toyota.component.Transmission;
+import com.toyota.component.WheelsRadiusType;
+import com.toyota.component.Wheel;
 
 import java.math.BigDecimal;
 
 public class Solara extends Cabriolet {
     private MiniFridge miniFridge;
 
-    public Solara(String color, int maxSpeed, TransmissionType transmissionType, WheelsRadiusType wheelRadiusType,
-                  Wheel[] wheels, GasolineTank gasolineTank, Engine engine, Electrics electrics, Headlights headlights,
-                  MiniFridge miniFridge, BigDecimal price) {
-        super(color, maxSpeed, transmissionType, wheelRadiusType, wheels, gasolineTank, engine, electrics, headlights,
-                price);
+    public Solara(String color, int maxSpeed, TransmissionType transmissionType, Transmission transmission,
+                  WheelsRadiusType wheelRadiusType, Wheel[] wheels, GasolineTank gasolineTank, Engine engine,
+                  Electrics electrics, Headlights headlights, MiniFridge miniFridge, BigDecimal price) {
+        super(color, maxSpeed, transmissionType, transmission, wheelRadiusType, wheels, gasolineTank, engine, electrics,
+                headlights, price);
         this.miniFridge = miniFridge;
-    }
-
-
-    public Solara(String color, int maxSpeed, TransmissionType transmissionType, WheelsRadiusType wheelRadiusType, Wheel[] wheels, GasolineTank gasolineTank, Engine engine, Electrics electrics, Headlights headlights, BigDecimal price, MiniFridge miniFridge) {
-        super(color, maxSpeed, transmissionType, wheelRadiusType, wheels, gasolineTank, engine, electrics, headlights, price);
-
     }
 
     public boolean isMiniFridgeOn() {

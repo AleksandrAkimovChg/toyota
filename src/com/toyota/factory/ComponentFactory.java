@@ -1,10 +1,17 @@
 package com.toyota.factory;
 
 import com.toyota.car.TransmissionType;
-import com.toyota.component.*;
+import com.toyota.component.Electrics;
+import com.toyota.component.Engine;
+import com.toyota.component.GasolineTank;
+import com.toyota.component.Headlights;
+import com.toyota.component.MiniFridge;
+import com.toyota.component.Transmission;
+import com.toyota.component.WheelsRadiusType;
+import com.toyota.component.Wheel;
 
 public class ComponentFactory {
-    private Country country;
+    private final Country country;
 
     public ComponentFactory(Country country) {
         this.country = country;

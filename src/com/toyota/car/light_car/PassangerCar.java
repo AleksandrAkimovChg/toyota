@@ -2,7 +2,13 @@ package com.toyota.car.light_car;
 
 import com.toyota.car.Car;
 import com.toyota.car.TransmissionType;
-import com.toyota.component.*;
+import com.toyota.component.Electrics;
+import com.toyota.component.Engine;
+import com.toyota.component.GasolineTank;
+import com.toyota.component.Headlights;
+import com.toyota.component.Transmission;
+import com.toyota.component.WheelsRadiusType;
+import com.toyota.component.Wheel;
 
 import java.math.BigDecimal;
 

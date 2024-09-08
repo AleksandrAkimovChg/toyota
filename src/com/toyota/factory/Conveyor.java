@@ -25,7 +25,7 @@ public class Conveyor {
 
     public Conveyor(Country country, ComponentFactory factory) throws CountyFactoryNotEqualException {
         this.country = country;
-        if (country != factory.getCountry()) {
+        if (this.country != factory.getCountry()) {
             throw new CountyFactoryNotEqualException("Ошибка страны поставщика: Конвеер в " + country
                     + ", а фабрика компонентов в" + factory.getCountry() + "Создайте другой конвеер");
         }
@@ -50,6 +50,7 @@ public class Conveyor {
         return new Solara(color,
                 MAX_SPEED_160,
                 TransmissionType.AMT,
+                factory.createTransmission(TransmissionType.AMT),
                 WheelsRadiusType.RADIUS_TYPE_16,
                 factory.createFourWheel(WheelsRadiusType.RADIUS_TYPE_17),
                 factory.createGasolineTank(MIN_QUANTITY, MAX_GAS_CAPACITY_50),

@@ -5,7 +5,7 @@ public enum WheelsRadiusType {
     RADIUS_TYPE_16(16),
     RADIUS_TYPE_20(20);
 
-    private int radius;
+    private final int radius;
 
     WheelsRadiusType(int radius) {
         this.radius = radius;

@@ -7,7 +7,7 @@ public class Engine {
         this.isEngineFine = isEngineFine;
     }
 
-    public boolean isEngineFine(){
+    public boolean isEngineFine() {
         return isEngineFine;
     }
 
