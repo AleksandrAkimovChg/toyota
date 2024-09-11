@@ -10,10 +10,10 @@ import com.toyota.component.Transmission;
 import com.toyota.component.WheelsRadiusType;
 import com.toyota.component.Wheel;
 
-public class ComponentFactory {
+public class Factory {
     private final Country country;
 
-    public ComponentFactory(Country country) {
+    public Factory(Country country) {
         this.country = country;
     }
 
@@ -29,13 +29,12 @@ public class ComponentFactory {
         return new Electrics(true);
     }
 
-
     protected Engine createEngine() {
         return new Engine(true);
     }
 
-    protected GasolineTank createGasolineTank(int quantity, int capacity) {
-        return new GasolineTank(0, 60);
+    protected GasolineTank createGasolineTank(int capacity) {
+        return new GasolineTank(0, capacity);
     }
 
     protected Headlights createHeadlights() {
@@ -50,7 +49,7 @@ public class ComponentFactory {
         return new Wheel(wheelRadiusType);
     }
 
-    protected Wheel[] createFourWheel(WheelsRadiusType wheelRadiusType) {
+    protected Wheel[] createFourWheels(WheelsRadiusType wheelRadiusType) {
         Wheel[] wheels = new Wheel[4];
         wheels[0] = createWheel(wheelRadiusType);
         wheels[1] = createWheel(wheelRadiusType);
