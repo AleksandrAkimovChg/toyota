@@ -41,7 +41,7 @@ public class Conveyor {
     }
 
     public Camry createCamry(String color, BigDecimal price) {
-        return new Camry(
+        Camry camry = new Camry(
                 color,
                 MAX_SPEED_180,
                 TransmissionType.AUTOMATIC,
@@ -52,11 +52,14 @@ public class Conveyor {
                 factory.createEngine(),
                 factory.createElectrics(),
                 factory.createHeadlights(),
-                price);
+                price
+        );
+        camry.setCountry(this.country);
+        return camry;
     }
 
     public Solara createSolara(String color, BigDecimal price) {
-        return new Solara(
+        Solara solara = new Solara(
                 color,
                 MAX_SPEED_160,
                 TransmissionType.AMT,
@@ -68,11 +71,14 @@ public class Conveyor {
                 factory.createElectrics(),
                 factory.createHeadlights(),
                 factory.createMiniFridge(),
-                price);
+                price
+        );
+        solara.setCountry(this.country);
+        return solara;
     }
 
     public Hiance createHiance(String color, BigDecimal price) {
-        return new Hiance(
+        Hiance hiance = new Hiance(
                 color,
                 MAX_SPEED_165,
                 TransmissionType.MANUAL,
@@ -85,11 +91,14 @@ public class Conveyor {
                 factory.createHeadlights(),
                 price,
                 MAX_CAPACITY_2000,
-                factory.createWheel(WheelsRadiusType.RADIUS_TYPE_20));
+                factory.createWheel(WheelsRadiusType.RADIUS_TYPE_20)
+        );
+        hiance.setCountry(this.country);
+        return hiance;
     }
 
     public Dyna createDyna(String color, BigDecimal price) {
-        return new Dyna(
+        Dyna dyna = new Dyna(
                 color,
                 MAX_SPEED_175,
                 TransmissionType.MANUAL,
@@ -101,6 +110,9 @@ public class Conveyor {
                 factory.createElectrics(),
                 factory.createHeadlights(),
                 price,
-                MAX_CAPACITY_2000);
+                MAX_CAPACITY_2000
+        );
+        dyna.setCountry(this.country);
+        return dyna;
     }
 }

@@ -7,6 +7,7 @@ import com.toyota.component.Headlights;
 import com.toyota.component.Transmission;
 import com.toyota.component.WheelsRadiusType;
 import com.toyota.component.Wheel;
+import com.toyota.factory.Country;
 
 import java.math.BigDecimal;
 
@@ -29,6 +30,7 @@ public class Car {
     private final Headlights headlights;
     private boolean isHeadLightsOn;
     private BigDecimal price;
+    private Country country;
 
     public Car(String color, int maxSpeed, TransmissionType transmissionType, Transmission transmission,
                WheelsRadiusType wheelsRadiusType, Wheel[] wheels, GasolineTank gasolineTank, Engine engine,
@@ -168,5 +170,9 @@ public class Car {
             isHeadLightsOn = true;
             System.out.println("Фары светят");
         }
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

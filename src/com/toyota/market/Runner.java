@@ -1,4 +1,4 @@
-package com.toyota;
+package com.toyota.market;
 
 import com.toyota.car.StartCarException;
 import com.toyota.car.cabriolet.model.Solara;
@@ -8,19 +8,27 @@ import com.toyota.car.light_car.model.Camry;
 import com.toyota.factory.Conveyor;
 import com.toyota.factory.Country;
 import com.toyota.factory.Factory;
+import com.toyota.storage.Storage;
 
 import java.math.BigDecimal;
 
 public class Runner {
     public static void main(String[] args) {
 
-        Factory factoryHk = new Factory(Country.CHINA);
-        Factory factoryRu = new Factory(Country.RUSSIA);
-        Conveyor conveyor = new Conveyor(Country.RUSSIA, factoryRu);
-        Camry camry = conveyor.createCamry("red", new BigDecimal(20000));
-        Solara solara = conveyor.createSolara("blue", new BigDecimal(15000));
-        Hiance hiance = conveyor.createHiance("green", new BigDecimal(25000));
-        Dyna dyna = conveyor.createDyna("orange", new BigDecimal(30000));
+
+        Storage storage = new Storage();
+        Factory factoryJapan = new Factory(Country.JAPAN);
+        Conveyor conveyor = new Conveyor(Country.JAPAN, factoryJapan);
+        Camry camry = conveyor.createCamry("black", new BigDecimal(10000));
+        Solara solara = conveyor.createSolara("white", new BigDecimal(12000));
+        Hiance hiance = conveyor.createHiance("black", new BigDecimal(15000));
+        Dyna dyna = conveyor.createDyna("black", new BigDecimal(22000));
+        storage.addCamry(camry);
+        storage.addSolara(solara);
+        storage.addHiance(hiance);
+        storage.addDyna(dyna);
+        System.out.println(storage);
+
 
         System.out.println(camry.isDrive());
 //        try {
@@ -36,6 +44,9 @@ public class Runner {
             ex.printStackTrace();
         }
         System.out.println(camry.isDrive());
+
+        Customer customer = new Customer("Петрович", new BigDecimal(10000));
+        System.out.println(customer.getMoney());
 
 
     }
