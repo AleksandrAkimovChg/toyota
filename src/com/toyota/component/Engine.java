@@ -1,13 +1,17 @@
 package com.toyota.component;
 
 public class Engine {
-    private boolean isEngineFine = true;
+    private boolean isEngineFine;
+
+    public Engine(boolean isEngineFine) {
+        this.isEngineFine = isEngineFine;
+    }
 
     public boolean isEngineFine() {
         return isEngineFine;
     }
 
-    public void setEngine(boolean engineFine) {
-        isEngineFine = engineFine;
+    public void setEngineFine(boolean bool) {
+        isEngineFine = bool;
     }
 }

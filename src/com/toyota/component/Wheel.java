@@ -2,10 +2,10 @@ package com.toyota.component;
 
 public class Wheel {
     private boolean isFlat;
-    private final WheelsRadiusType whellRadiusType;
+    private final WheelsRadiusType wheelRadiusType;
 
-    public Wheel(WheelsRadiusType whellRadiusType) {
-        this.whellRadiusType = whellRadiusType;
+    public Wheel(WheelsRadiusType wheelRadiusType) {
+        this.wheelRadiusType = wheelRadiusType;
     }
 
     public boolean isFlat() {
@@ -17,6 +17,6 @@ public class Wheel {
     }
 
     public WheelsRadiusType getWheelRadiusType() {
-        return whellRadiusType;
+        return wheelRadiusType;
     }
 }

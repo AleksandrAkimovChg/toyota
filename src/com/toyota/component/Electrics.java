@@ -1,13 +1,17 @@
 package com.toyota.component;
 
 public class Electrics {
-    private boolean electricsGood = true;
+    private boolean isElectricsGood;
 
-    public boolean isElectricsGood() {
-        return electricsGood;
+    public Electrics(boolean isElectricsGood) {
+        this.isElectricsGood = isElectricsGood;
     }
 
-    public void setElectrics(boolean bool) {
-        this.electricsGood = bool;
+    public boolean isElectricsGood() {
+        return isElectricsGood;
+    }
+
+    public void setElectricsGood(boolean bool) {
+        this.isElectricsGood = bool;
     }
 }

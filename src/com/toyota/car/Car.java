@@ -4,8 +4,10 @@ import com.toyota.component.Electrics;
 import com.toyota.component.Engine;
 import com.toyota.component.GasolineTank;
 import com.toyota.component.Headlights;
-import com.toyota.component.Wheel;
+import com.toyota.component.Transmission;
 import com.toyota.component.WheelsRadiusType;
+import com.toyota.component.Wheel;
+import com.toyota.factory.Country;
 
 import java.math.BigDecimal;
 
@@ -18,6 +20,7 @@ public class Car {
     private final String color;
     private final int maxSpeed;
     protected final TransmissionType transmissionType;
+    protected Transmission transmission;
     protected boolean isDrive = false;
     private final WheelsRadiusType carWheelsRadiusType;
     protected Wheel[] wheels;
@@ -27,18 +30,20 @@ public class Car {
     private final Headlights headlights;
     private boolean isHeadLightsOn;
     private BigDecimal price;
+    private Country country;
 
-    public Car(String color, int maxSpeed, TransmissionType transmissionType,
+    public Car(String color, int maxSpeed, TransmissionType transmissionType, Transmission transmission,
                WheelsRadiusType wheelsRadiusType, Wheel[] wheels, GasolineTank gasolineTank, Engine engine,
                Electrics electrics, Headlights headlights, BigDecimal price) {
 
-        if (wheels == null || wheels.length == 4) {
+        if (wheels == null || wheels.length != 4) {
             throw new RuntimeException("Нет колес / недостаточно колес");
         }
 
         this.color = color;
         this.maxSpeed = maxSpeed;
         this.transmissionType = transmissionType;
+        this.transmission = transmission;
         this.carWheelsRadiusType = wheelsRadiusType;
         this.wheels = new Wheel[wheels.length];
         this.wheels[WHEEL_FRONT_LEFT_INDEX] = setWheel(wheels[WHEEL_FRONT_LEFT_INDEX]);
@@ -165,5 +170,9 @@ public class Car {
             isHeadLightsOn = true;
             System.out.println("Фары светят");
         }
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

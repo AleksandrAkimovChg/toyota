@@ -6,19 +6,20 @@ import com.toyota.component.Electrics;
 import com.toyota.component.Engine;
 import com.toyota.component.GasolineTank;
 import com.toyota.component.Headlights;
-import com.toyota.component.Wheel;
+import com.toyota.component.Transmission;
 import com.toyota.component.WheelsRadiusType;
+import com.toyota.component.Wheel;
 
 import java.math.BigDecimal;
 
 public class Hiance extends Cargo {
     private Wheel spareWheel;
 
-    public Hiance(String color, int maxSpeed, TransmissionType transmissionType, WheelsRadiusType wheelRadiusType,
-                  Wheel[] wheels, GasolineTank gasolineTank, Engine engine, Electrics electrics, Headlights headlights,
-                  BigDecimal price, int kilogramme, Wheel spareWheel) {
-        super(color, maxSpeed, transmissionType, wheelRadiusType, wheels, gasolineTank, engine, electrics, headlights,
-                price, kilogramme);
+    public Hiance(String color, int maxSpeed, TransmissionType transmissionType, Transmission transmission,
+                  WheelsRadiusType wheelRadiusType, Wheel[] wheels, GasolineTank gasolineTank, Engine engine,
+                  Electrics electrics, Headlights headlights, BigDecimal price, int maxCapacity, Wheel spareWheel) {
+        super(color, maxSpeed, transmissionType, transmission, wheelRadiusType, wheels, gasolineTank, engine, electrics,
+                headlights, price, maxCapacity);
         this.spareWheel = spareWheel;
     }
 
