@@ -2,24 +2,15 @@ package com.toyota.component;
 
 import com.toyota.car.TransmissionType;
 
-public class Transmission {
+public class Transmission extends Component {
     private final TransmissionType transmissionType;
-    private boolean isTransmissionGood;
 
-    public Transmission(TransmissionType transmissionType, boolean isTransmissionGood) {
+    public Transmission(TransmissionType transmissionType, boolean workable) {
+        super(workable);
         this.transmissionType = transmissionType;
-        this.isTransmissionGood = isTransmissionGood;
     }
 
     public TransmissionType getTransmissionType() {
         return transmissionType;
-    }
-
-    public boolean isTransmissionGood() {
-        return isTransmissionGood;
-    }
-
-    public void setTransmissionGood(boolean bool) {
-        isTransmissionGood = bool;
     }
 }
