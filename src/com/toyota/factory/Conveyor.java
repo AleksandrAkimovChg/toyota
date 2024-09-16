@@ -23,16 +23,17 @@ public class Conveyor {
     private final Country country;
     private Factory factory;
 
-    public Conveyor(Country country, Factory factory) throws CountyFactoryNotEqualException {
-        checkCountryFactory(country, factory);
+    public Conveyor(Country country, Factory factory) {
         this.country = country;
         this.factory = factory;
     }
 
     private void checkCountryFactory(Country country, Factory factory) throws CountyFactoryNotEqualException {
-        if (country != factory.getCountry()) {
-            throw new CountyFactoryNotEqualException("Ошибка страны поставщика: Конвеер в " + country
-                    + ", а фабрика компонентов в " + factory.getCountry() + " . Создайте другой конвеер.");
+        if (this.factory != null) {
+            if (this.country != this.factory.getCountry()) {
+                throw new CountyFactoryNotEqualException("Ошибка страны поставщика: Конвеер в " + country
+                        + ", а фабрика компонентов в " + factory.getCountry() + " . Создайте другой конвеер.");
+            }
         }
     }
 
@@ -55,7 +56,7 @@ public class Conveyor {
         return camry;
     }
 
-    public Solara createSolara(String color, BigDecimal price) throws CountyFactoryNotEqualException  {
+    public Solara createSolara(String color, BigDecimal price) throws CountyFactoryNotEqualException {
         checkCountryFactory(this.country, this.factory);
         Solara solara = new Solara(
                 color,

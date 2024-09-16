@@ -38,7 +38,7 @@ public class Manager {
             Models model = getDealerModelMaxPrice(money);
             BigDecimal price = model.getDealerPrice();
             BigDecimal newPrice = price.add(price.movePointLeft(1));
-            if (newPrice.compareTo(money) >= 0) {
+            if (money.compareTo(newPrice) >= 0) {
                 productionRequest(model, color, newPrice);
                 return soldCarFromStorage(money);
             }
