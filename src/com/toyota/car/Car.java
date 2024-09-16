@@ -175,4 +175,11 @@ public class Car {
     public void setCountry(Country country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "price=" + price +
+                '}';
+    }
 }
