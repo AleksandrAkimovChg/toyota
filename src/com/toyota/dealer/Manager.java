@@ -15,9 +15,9 @@ public class Manager {
     private static final BigDecimal PRICE_HIACE = new BigDecimal(15_000);
     private static final BigDecimal PRICE_DYNA = new BigDecimal(22_000);
 
-    private Storage storage;
+    private final Storage storage;
+    private final Conveyor conveyor;
     private Customer customer;
-    private Conveyor conveyor;
 
     public Manager(Storage storage, Conveyor conveyor) {
         this.storage = storage;

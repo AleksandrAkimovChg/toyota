@@ -1,21 +1,20 @@
 package com.toyota.storage;
 
-import com.toyota.car.Car;
 import com.toyota.car.cabriolet.model.Solara;
 import com.toyota.car.cargo.model.Dyna;
 import com.toyota.car.cargo.model.Hiance;
 import com.toyota.car.light_car.model.Camry;
 
-import java.util.*;
+import java.util.TreeSet;
 
 public class Storage {
     private int count;
     private final int maxCapacity = 1000;
     private int freePlace;
-    private TreeSet<Camry> camrys;
-    private TreeSet<Solara> solaras;
-    private TreeSet<Hiance> hiances;
-    private TreeSet<Dyna> dynas;
+    private final TreeSet<Camry> camrys;
+    private final TreeSet<Solara> solaras;
+    private final TreeSet<Hiance> hiances;
+    private final TreeSet<Dyna> dynas;
 
     public Storage() {
         this.count = 0;
@@ -25,14 +24,6 @@ public class Storage {
         hiances = new TreeSet<>(new CustomComparator().reversed());
         dynas = new TreeSet<>(new CustomComparator().reversed());
     }
-
-    public Comparator<Car> compareCar = (arg1, arg2) -> {
-        int comparePrice = arg1.getPrice().compareTo(arg2.getPrice());
-        if (comparePrice != 0) {
-            return comparePrice;
-        }
-        return arg1.equals(arg2) ? 0 : 1;
-    };
 
     private boolean checkFreePlace() {
         return freePlace > 0;

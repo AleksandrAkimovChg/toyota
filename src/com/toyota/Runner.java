@@ -1,10 +1,10 @@
 package com.toyota;
 
-import com.toyota.car.Car;
 import com.toyota.car.cabriolet.model.Solara;
 import com.toyota.car.cargo.model.Dyna;
 import com.toyota.car.cargo.model.Hiance;
 import com.toyota.car.light_car.model.Camry;
+import com.toyota.component.Wheel;
 import com.toyota.dealer.Customer;
 import com.toyota.dealer.Manager;
 import com.toyota.factory.Conveyor;
@@ -14,8 +14,6 @@ import com.toyota.factory.Factory;
 import com.toyota.storage.Storage;
 
 import java.math.BigDecimal;
-import java.util.Comparator;
-import java.util.TreeSet;
 
 public class Runner {
     public static void main(String[] args) {
@@ -35,6 +33,22 @@ public class Runner {
         } catch (CountyFactoryNotEqualException ex) {
             System.out.println(ex);
         }
+
+        Camry camryWithMaxPrice = storage.getCamryWithMaxPrice();
+        Solara solaraWithMaxPrice = storage.getSolaraWithMaxPrice();
+        Hiance hianceWithMaxPrice = storage.getHianceWithMaxPrice();
+        Dyna dynaWithMaxPrice = storage.getDynaWithMaxPrice();
+
+        Camry camryFromStorage = storage.getCamryFromStorage();
+        Solara solaraFromStorage = storage.getSolaraFromStorage();
+        Hiance hianceFromStorage = storage.getHianceFromStorage();
+        Dyna dynaFromStorage = storage.getDynaFromStorage();
+
+        boolean usbOn = camryFromStorage.isUsbOn();
+        boolean miniFridgeOn = solaraFromStorage.isMiniFridgeOn();
+        Wheel spareWheel = hianceFromStorage.getSpareWheel();
+        boolean socketOutletOn = dynaFromStorage.isSocketOutletOn();
+
 
         System.out.println(storage);
 
