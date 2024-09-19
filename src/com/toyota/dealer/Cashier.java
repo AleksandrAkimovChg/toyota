@@ -1,4 +1,6 @@
-package com.toyota.market;
+package com.toyota.dealer;
+
+import com.toyota.car.Car;
 
 import java.math.BigDecimal;
 
@@ -9,7 +11,7 @@ public class Cashier {
         income = BigDecimal.ZERO;
     }
 
-    public void order() {
-
+    public void order(Car car) {
+        income = income.add(car.getPrice());
     }
 }

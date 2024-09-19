@@ -145,10 +145,10 @@ public class Car {
             if (gasolineTank.getQuantity() <= 0) {
                 throw new StartCarException("Бензина нет");
             }
-            if (!electrics.isElectricsGood()) {
+            if (!electrics.isWorkable()) {
                 throw new StartCarException("Электрика неисправна");
             }
-            if (!engine.isEngineFine()) {
+            if (!engine.isWorkable()) {
                 throw new StartCarException("Двигатель неисправен");
             }
             isDrive = true;
@@ -163,7 +163,7 @@ public class Car {
     }
 
     public void headlightsOn() {
-        if (!headlights.isHeadlightsGood()) {
+        if (!headlights.isWorkable()) {
             throw new RuntimeException("Фары неисправны");
         }
         if (!isHeadLightsOn) {
@@ -174,5 +174,12 @@ public class Car {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "price=" + price +
+                '}';
     }
 }

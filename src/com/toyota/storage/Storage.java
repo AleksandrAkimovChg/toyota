@@ -5,91 +5,113 @@ import com.toyota.car.cargo.model.Dyna;
 import com.toyota.car.cargo.model.Hiance;
 import com.toyota.car.light_car.model.Camry;
 
-import java.util.LinkedList;
+import java.util.TreeSet;
 
 public class Storage {
     private int count;
     private final int maxCapacity = 1000;
     private int freePlace;
-
-    private LinkedList<Camry> camrys;
-    private LinkedList<Solara> solaras;
-    private LinkedList<Hiance> hiances;
-    private LinkedList<Dyna> dynas;
+    private final TreeSet<Camry> camrys;
+    private final TreeSet<Solara> solaras;
+    private final TreeSet<Hiance> hiances;
+    private final TreeSet<Dyna> dynas;
 
     public Storage() {
         this.count = 0;
         this.freePlace = this.maxCapacity - this.count;
-        camrys = new LinkedList<>();
-        solaras = new LinkedList<>();
-        hiances = new LinkedList<>();
-        dynas = new LinkedList<>();
+        camrys = new TreeSet<>(new CustomComparator().reversed());
+        solaras = new TreeSet<>(new CustomComparator().reversed());
+        hiances = new TreeSet<>(new CustomComparator().reversed());
+        dynas = new TreeSet<>(new CustomComparator().reversed());
     }
 
     private boolean checkFreePlace() {
         return freePlace > 0;
     }
 
-    public void addCamry(Camry camry) {
+    private void addCounting() {
+        count++;
+        freePlace--;
+    }
+
+    public boolean addCamry(Camry camry) {
         if (checkFreePlace()) {
             camrys.add(camry);
-            count++;
-            freePlace--;
+            addCounting();
+            return true;
         }
+        return false;
     }
 
-    public void addSolara(Solara solara) {
+    public boolean addSolara(Solara solara) {
         if (checkFreePlace()) {
             solaras.add(solara);
-            count++;
-            freePlace--;
+            addCounting();
+            return true;
         }
+        return false;
     }
 
-    public void addHiance(Hiance hiance) {
+    public boolean addHiance(Hiance hiance) {
         if (checkFreePlace()) {
             hiances.add(hiance);
-            count++;
-            freePlace--;
+            addCounting();
+            return true;
         }
-
+        return false;
     }
 
-    public void addDyna(Dyna dyna) {
+    public boolean addDyna(Dyna dyna) {
         if (checkFreePlace()) {
             dynas.add(dyna);
-            count++;
-            freePlace--;
+            addCounting();
+            return true;
         }
+        return false;
     }
 
-    public Camry getCamry() {
-        count--;
-        freePlace++;
-        return camrys.removeLast();
+    public Camry getCamryWithMaxPrice() {
+        return camrys.first();
     }
 
-    public Solara getSolara() {
+    private void outCounting() {
         count--;
         freePlace++;
-        return solaras.removeLast();
     }
 
-    public Hiance getHiance() {
-        count--;
-        freePlace++;
-        return hiances.removeLast();
+    public Camry getCamryFromStorage() {
+        outCounting();
+        return camrys.pollFirst();
     }
 
-    public Dyna getDyna() {
-        count--;
-        freePlace++;
-        return dynas.removeLast();
+    public Solara getSolaraWithMaxPrice() {
+        return solaras.first();
+    }
+
+    public Solara getSolaraFromStorage() {
+        outCounting();
+        return solaras.pollFirst();
+    }
+
+    public Hiance getHianceWithMaxPrice() {
+        return hiances.first();
+    }
+
+    public Hiance getHianceFromStorage() {
+        outCounting();
+        return hiances.pollFirst();
+    }
+
+    public Dyna getDynaWithMaxPrice() {
+        return dynas.first();
+    }
+
+    public Dyna getDynaFromStorage() {
+        outCounting();
+        return dynas.pollFirst();
     }
 
     public int getCountCamrys() {
-        count--;
-        freePlace++;
         return camrys.size();
     }
 
@@ -105,7 +127,7 @@ public class Storage {
         return dynas.size();
     }
 
-    public int getCount() {
+    public int getCountStorage() {
         return count;
     }
 }

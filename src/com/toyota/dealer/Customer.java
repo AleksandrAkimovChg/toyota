@@ -1,4 +1,4 @@
-package com.toyota.market;
+package com.toyota.dealer;
 
 import java.math.BigDecimal;
 
