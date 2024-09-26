@@ -15,8 +15,8 @@ public class Report {
     private static final String LINE = "===========================================================\n";
     private static final String SPACE = " - ";
     private final String nameManager;
-    private LinkedList<Car> soldCars;
-    private LinkedList<Models> soldModels;
+    private final LinkedList<Car> soldCars;
+    private final LinkedList<Models> soldModels;
 
 
     public Report(String name) {

@@ -10,7 +10,6 @@ import com.toyota.component.Wheel;
 import com.toyota.factory.Country;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class Car {
     private final static int WHEEL_FRONT_LEFT_INDEX = 0;
@@ -56,7 +55,6 @@ public class Car {
         this.electrics = electrics;
         this.headlights = headlights;
         this.price = price;
-        this.price.setScale(2, RoundingMode.HALF_UP);
     }
 
     public String getColor() {
