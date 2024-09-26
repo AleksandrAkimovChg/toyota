@@ -10,58 +10,76 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class Manager {
-    private static final BigDecimal PRICE_CAMRY = new BigDecimal(10_000);
-    private static final BigDecimal PRICE_SOLARA = new BigDecimal(12_000);
-    private static final BigDecimal PRICE_HIACE = new BigDecimal(15_000);
-    private static final BigDecimal PRICE_DYNA = new BigDecimal(22_000);
-
+    private String name;
     private final Storage storage;
     private final Conveyor conveyor;
     private Customer customer;
+    private Report report;
 
-    public Manager(Storage storage, Conveyor conveyor) {
+    public Manager(String name, Storage storage, Conveyor conveyor) {
+        this.name = name;
         this.storage = storage;
         this.conveyor = conveyor;
+        this.report = new Report(this.name);
     }
 
-    public void welcomeCustomer(Customer customer) {
+    public Car welcomeCustomer(Customer customer) {
         if (customer.getMoney() != null) {
             System.out.println("Добро пожаловать в нашу дилерскую сеть " + customer.getName());
             this.customer = customer;
+            return soldCar();
         }
-        System.out.println("Сорян");
+        return null;
     }
 
-    public Car soldCar(String color) throws CountyFactoryNotEqualException {
+    public Car soldCar() {
         BigDecimal money = this.customer.getMoney();
         if (this.storage.getCountStorage() <= 0) {
             Models model = getDealerModelMaxPrice(money);
-            BigDecimal price = model.getDealerPrice();
-            BigDecimal newPrice = price.add(price.movePointLeft(1));
-            if (money.compareTo(newPrice) >= 0) {
-                productionRequest(model, color, newPrice);
-                return soldCarFromStorage(money);
+            if (model != null) {
+                BigDecimal price = model.getDealerPrice();
+                BigDecimal newPrice = price.add(price.movePointLeft(1));
+                if (money.compareTo(newPrice) >= 0) {
+                    try {
+                        productionRequest(model, "magenta", newPrice);
+                    } catch (CountyFactoryNotEqualException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+                    return soldCarFromStorage(money);
+                }
             }
+            System.out.println("денежек маловато");
+            return null;
         }
         return soldCarFromStorage(money);
     }
 
     private Car soldCarFromStorage(BigDecimal money) {
-        Map.Entry<Car, Models> carPrice = getCarMaxPrice(money);
-        BigDecimal coast = carPrice.getKey().getPrice();
-        Models model = carPrice.getValue();
+        Map.Entry<Models, Car> modelsCarEntry = getCarMaxPrice(money).firstEntry();
+        Car car = modelsCarEntry.getValue();
+        BigDecimal coast = modelsCarEntry.getValue().getPrice();
+        Models model = modelsCarEntry.getKey();
         if (this.customer.getMoney().compareTo(coast) >= 0) {
-            return getSoldCar(model);
+            this.report.addReport(model, car);
+            return getSoldCar(model, car);
         }
         return null;
     }
 
-    private Car getSoldCar(Models model) {
+    private Car getSoldCar(Models model, Car car) {
         switch (model) {
-            case CAMRY -> storage.getCamryFromStorage();
-            case SOLARA -> storage.getSolaraFromStorage();
-            case HIANCE -> storage.getHianceFromStorage();
-            case DYNA -> storage.getDynaFromStorage();
+            case CAMRY -> {
+                return storage.getCamryFromStorage(car);
+            }
+            case SOLARA -> {
+                return storage.getSolaraFromStorage(car);
+            }
+            case HIANCE -> {
+                return storage.getHianceFromStorage(car);
+            }
+            case DYNA -> {
+                return storage.getDynaFromStorage(car);
+            }
         }
         return null;
     }
@@ -87,28 +105,39 @@ public class Manager {
         }
     }
 
-    private Map.Entry<Car, Models> getCarMaxPrice(BigDecimal money) {
-        Car car;
-        Models model;
-        TreeMap<Car, Models> result = new TreeMap<>(new CustomComparator().reversed());
-        Map<Models, Car> stock = new HashMap<>(
-                Map.of(
-                        Models.CAMRY, storage.getCamryWithMaxPrice(),
-                        Models.SOLARA, storage.getSolaraWithMaxPrice(),
-                        Models.HIANCE, storage.getDynaWithMaxPrice(),
-                        Models.DYNA, storage.getDynaWithMaxPrice()
-                )
-        );
-        int count = 0;
-
-        for (Map.Entry<Models, Car> item : stock.entrySet()) {
-            if (money.compareTo(item.getValue().getPrice()) >= 0) {
+    private TreeMap<Models, Car> getCarMaxPrice(BigDecimal money) {
+        reversSortStockList();
+        Map<Models, List<Car>> stock = storage.getCars();
+        Models modelResult = null;
+        Car carResult = null;
+        for (Map.Entry<Models, List<Car>> item : stock.entrySet()) {
+            List<Car> cars = item.getValue();
+            Car car;
+            Models model;
+            if (!cars.isEmpty() && cars.size() > 0) {
                 model = item.getKey();
-                car = item.getValue();
-                result.put(car, model);
+                car = item.getValue().get(0);
+                if (car != null && money.compareTo(car.getPrice()) >= 0) {
+                    money = car.getPrice();
+                    modelResult = model;
+                    carResult = car;
+                }
             }
+
         }
-        Map.Entry<Car, Models> carModelsEntry = result.firstEntry();
-        return carModelsEntry;
+        TreeMap<Models, Car> result = new TreeMap<>();
+        result.put(modelResult, carResult);
+        return result;
+    }
+
+    private void reversSortStockList() {
+        Map<Models, List<Car>> cars = storage.getCars();
+        for (Models item : Models.values()) {
+            Collections.sort(cars.get(item), new CustomComparator().reversed());
+        }
+    }
+
+    public void createReport() {
+        report.doReport();
     }
 }

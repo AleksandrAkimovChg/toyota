@@ -16,10 +16,6 @@ public class Customer {
         return money;
     }
 
-    public void setMoney(BigDecimal money) {
-        this.money = money;
-    }
-
     public String getName() {
         return name;
     }
