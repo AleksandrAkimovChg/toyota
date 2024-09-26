@@ -1,7 +1,6 @@
 package com.toyota.dealer;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public enum Models {
     CAMRY("Camry", new BigDecimal(10_000), new BigDecimal(5_000)),
