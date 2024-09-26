@@ -39,16 +39,16 @@ public class Storage {
      * Добавляем экземпляр Camry в мапу.
      */
     public boolean addCamry(Camry camry) {
+        addCounting();
         if (checkFreePlace() && camry instanceof Camry) {
             if (cars.get(CAMRY) == null) {
-                cars.put(CAMRY, cars.getOrDefault(CAMRY, new ArrayList<>(List.of(camry))));
+                cars.put(CAMRY, new ArrayList<>(List.of(camry)));
             } else {
                 List<Car> carList = cars.get(CAMRY);
                 carList.add(camry);
                 cars.put(CAMRY, carList);
                 return true;
             }
-            addCounting();
         }
         return false;
     }
@@ -60,7 +60,7 @@ public class Storage {
         if (checkFreePlace() && solara instanceof Solara) {
             addCounting();
             if (cars.get(SOLARA) == null) {
-                cars.put(SOLARA, cars.getOrDefault(SOLARA, new ArrayList<>(List.of(solara))));
+                cars.put(SOLARA, new ArrayList<>(List.of(solara)));
             } else {
                 List<Car> carList = cars.get(SOLARA);
                 carList.add(solara);
@@ -78,7 +78,7 @@ public class Storage {
         if (checkFreePlace() && hiance instanceof Hiance) {
             addCounting();
             if (cars.get(HIANCE) == null) {
-                cars.put(HIANCE, cars.getOrDefault(HIANCE, new ArrayList<>(List.of(hiance))));
+                cars.put(HIANCE, new ArrayList<>(List.of(hiance)));
             } else {
                 List<Car> carList = cars.get(HIANCE);
                 cars.put(HIANCE, carList);
@@ -97,7 +97,6 @@ public class Storage {
             addCounting();
             if (cars.get(DYNA) == null) {
                 cars.put(DYNA, new ArrayList<>(List.of(dyna)));
-                cars.put(DYNA, cars.getOrDefault(DYNA, new ArrayList<>(List.of(dyna))));
             } else {
                 List<Car> carList = cars.get(DYNA);
                 carList.add(dyna);

@@ -4,18 +4,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public enum Models {
-    CAMRY("Camry",
-            new BigDecimal(10_000).setScale(2, RoundingMode.HALF_UP),
-            new BigDecimal(5_000).setScale(2, RoundingMode.HALF_UP)),
-    SOLARA("Solara",
-            new BigDecimal(12_000).setScale(2, RoundingMode.HALF_UP),
-            new BigDecimal(8_000).setScale(2, RoundingMode.HALF_UP)),
-    HIANCE("Hiance",
-            new BigDecimal(15_000).setScale(2, RoundingMode.HALF_UP),
-            new BigDecimal(10_000).setScale(2, RoundingMode.HALF_UP)),
-    DYNA("Dyna",
-            new BigDecimal(22_000).setScale(2, RoundingMode.HALF_UP),
-            new BigDecimal(12_000).setScale(2, RoundingMode.HALF_UP));
+    CAMRY("Camry", new BigDecimal(10_000), new BigDecimal(5_000)),
+    SOLARA("Solara", new BigDecimal(12_000), new BigDecimal(8_000)),
+    HIANCE("Hiance", new BigDecimal(15_000), new BigDecimal(10_000)),
+    DYNA("Dyna", new BigDecimal(22_000), new BigDecimal(12_000));
 
     private final String name;
     private final BigDecimal dealerPrice;

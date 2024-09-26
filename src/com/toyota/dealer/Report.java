@@ -49,16 +49,16 @@ public class Report {
                     .append(SPACE)
                     .append(soldModels.get(i).getCoast().setScale(2, RoundingMode.HALF_UP))
                     .append("\n");
-            totalIncome = totalIncome.add(soldCars.get(i).getPrice());
-            totalCoast = totalCoast.add(soldModels.get(i).getCoast());
-            totalProfit = totalIncome.subtract(totalCoast);
+            totalIncome = totalIncome.add(soldCars.get(i).getPrice()).setScale(2, RoundingMode.HALF_UP);
+            totalCoast = totalCoast.add(soldModels.get(i).getCoast()).setScale(2, RoundingMode.HALF_UP);
+            totalProfit = totalIncome.subtract(totalCoast).setScale(2, RoundingMode.HALF_UP);
         }
         report
                 .append("Доходы - ")
                 .append(totalIncome)
-                .append(" , Расходы - ")
+                .append(", Расходы - ")
                 .append(totalCoast)
-                .append(" , Прибыль - ")
+                .append(", Прибыль - ")
                 .append(totalProfit)
                 .append("\n");
         report.append(LINE);
@@ -66,7 +66,7 @@ public class Report {
     }
 
     private void writeReport(String text) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy_HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy_HH:mm:ss");
         String filename = FILENAME_TEMPLATE.formatted(this.nameManager, LocalDateTime.now().format(formatter));
         try (FileWriter fileWriter = new FileWriter(filename, false)) {
             fileWriter.write(text + "\n");

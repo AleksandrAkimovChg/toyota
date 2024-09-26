@@ -133,7 +133,7 @@ public class Manager {
     private void reversSortStockList() {
         Map<Models, List<Car>> cars = storage.getCars();
         for (Models item : Models.values()) {
-            Collections.sort(cars.get(item), new CustomComparator().reversed());
+            cars.get(item).sort(new CustomComparator().reversed());
         }
     }
 
