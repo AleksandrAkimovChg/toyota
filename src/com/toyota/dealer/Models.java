@@ -17,9 +17,9 @@ public enum Models {
             new BigDecimal(22_000).setScale(2, RoundingMode.HALF_UP),
             new BigDecimal(12_000).setScale(2, RoundingMode.HALF_UP));
 
-    private String name;
-    private BigDecimal dealerPrice;
-    private BigDecimal coast;
+    private final String name;
+    private final BigDecimal dealerPrice;
+    private final BigDecimal coast;
 
     Models(String name, BigDecimal dealerPrice, BigDecimal coast) {
         this.name = name;
