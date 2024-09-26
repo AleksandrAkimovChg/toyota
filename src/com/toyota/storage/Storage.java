@@ -118,13 +118,6 @@ public class Storage {
     }
 
     /**
-     * Возвращаем первый (максимальный) элемент из списка по модели Camry.
-     */
-    public Camry getCamryWithMaxPrice() {
-        return (Camry) getReversSortedCarList(CAMRY).get(0);
-    }
-
-    /**
      * Выбытие модели из хранения.
      */
     public Camry getCamryFromStorage(Car camry) {
@@ -135,13 +128,6 @@ public class Storage {
             return (Camry) camry;
         }
         return null;
-    }
-
-    /**
-     * Возвращаем первый (максимальный) элемент из списка по модели Solara.
-     */
-    public Solara getSolaraWithMaxPrice() {
-        return (Solara) getReversSortedCarList(SOLARA).get(0);
     }
 
     /**
@@ -158,13 +144,6 @@ public class Storage {
     }
 
     /**
-     * Возвращаем первый (максимальный) элемент из списка по модели Hiance.
-     */
-    public Hiance getHianceWithMaxPrice() {
-        return (Hiance) getReversSortedCarList(HIANCE).get(0);
-    }
-
-    /**
      * Выбытие модели hiance из хранения.
      */
     public Hiance getHianceFromStorage(Car hiance) {
@@ -175,13 +154,6 @@ public class Storage {
             return (Hiance) hiance;
         }
         return null;
-    }
-
-    /**
-     * Возвращаем первый (максимальный) элемент из списка по модели Dyna.
-     */
-    public Dyna getDynaWithMaxPrice() {
-        return (Dyna) getReversSortedCarList(DYNA).get(0);
     }
 
     /**

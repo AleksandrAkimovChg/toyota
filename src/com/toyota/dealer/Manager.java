@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class Manager {
-    private String name;
+    private final String name;
     private final Storage storage;
     private final Conveyor conveyor;
     private Customer customer;
